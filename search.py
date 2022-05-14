@@ -8,15 +8,24 @@ query = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create]) AND ((\
 
 results = pubmed.query(query, max_results=5000)
 
-titles, dois = [], []
+titles, dois, journals, ids = [], [], [], []
 for article in results:
     titles.append(article.title)
+    journals.append(article.journal)
+    ids.append(article.pubmed_id)
     dois.append(article.doi)
     
-df = pd.DataFrame({'title': titles, 'doi': dois})
-def get_link(doi):
+df = pd.DataFrame({'title': titles, 'journals': journals, 'pubmed_id': ids, 'doi': dois})
+def get_pubmed_link(pubmed_id):
+    if pubmed_id:
+        pubmed_id = pubmed_id.splitlines()[0]
+        return f"=HYPERLINK(\"https://pubmed.ncbi.nlm.nih.gov/{pubmed_id}\", \"{pubmed_id}\")"
+
+def get_doi_link(doi):
     if doi:
+        doi = doi.splitlines()[0]
         return f"=HYPERLINK(\"http://doi.org/{doi}\", \"{doi}\")"
         
-df['doi'] = df['doi'].apply(get_link)
+df['pubmed_id'] = df['pubmed_id'].apply(get_pubmed_link)
+df['doi'] = df['doi'].apply(get_doi_link)
 df.to_excel("results.xlsx", index = False)
