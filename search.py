@@ -4,9 +4,38 @@ import pandas as pd
 
 pubmed = PubMed(tool="My Tool")
 
-query = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create]) AND ((\"Palliative Care\"[Mesh]) OR (\"Palliative Medicine\"[Mesh]) OR (\"Hospice and Palliative Care Nursing\"[Mesh]) OR (\"Terminal Care\"[Mesh]) OR (\"Death\"[Mesh]) OR (\"Hospice Care\"[Mesh]) OR (\"Right to Die\"[Mesh]) OR (\"Catastrophic Illness\"[Mesh]) OR (\"Respite Care\"[Mesh]) OR (\"Assisted Living Facilities\"[Mesh]) OR (\"Hospices\"[Mesh]) OR (\"Quality of Life\"[Mesh]) OR (\"Sickness Impact Profile\"[Mesh]) OR (\"Resuscitation Orders\"[Mesh]) OR (\"Withholding Treatment\"[Mesh]) OR (\"Advance Directive Adherence\"[Mesh]) OR (\"Euthanasia, Passive\"[Mesh]) OR (\"Medical Futility\"[Mesh]) OR (\"Palliative Care/statistics and numerical data\"[Mesh]) OR (\"Ethics Consultation\"[Mesh])) AND (\"Clinical Study\" [Publication Type])"
+query  = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create])"
 
-results = pubmed.query(query, max_results=5000)
+query += "AND ("
+
+query += "(\"Palliative Care\"[Mesh]) OR "
+query += "(\"Palliative Medicine\"[Mesh]) OR "
+query += "(\"Hospice and Palliative Care Nursing\"[Mesh]) OR "
+query += "(\"Terminal Care\"[Mesh]) OR "
+query += "(\"Death\"[Mesh]) OR "
+query += "(\"Hospice Care\"[Mesh]) OR "
+#query += "(\"Right to Die\"[Mesh]) OR "
+query += "(\"Catastrophic Illness\"[Mesh]) OR "
+#query += "(\"Respite Care\"[Mesh]) OR "
+#query += "(\"Assisted Living Facilities\"[Mesh]) OR "
+query += "(\"Hospices\"[Mesh]) OR "
+query += "(\"Quality of Life\"[Mesh]) OR "
+query += "(\"Sickness Impact Profile\"[Mesh]) OR "
+query += "(\"Resuscitation Orders\"[Mesh]) OR "
+query += "(\"Withholding Treatment\"[Mesh]) OR "
+query += "(\"Advance Directive Adherence\"[Mesh]) OR "
+#query += "(\"Euthanasia, Passive\"[Mesh]) OR "
+query += "(\"Medical Futility\"[Mesh]) OR "
+query += "(\"Palliative Care/statistics and numerical data\"[Mesh]) OR "
+query += "(\"Ethics Consultation\"[Mesh])"
+
+query += ") AND "
+
+query += "(\"Clinical Study\" [Publication Type])"
+
+print(query)
+
+results = pubmed.query(query, max_results=50000)
 
 titles, dois, journals, ids = [], [], [], []
 for article in results:
