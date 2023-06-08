@@ -4,9 +4,11 @@ import pandas as pd
 
 pubmed = PubMed(tool="My Tool")
 
-query  = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create])"
+#query  = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create]) "
+query  = "(\"2022/07/01\"[Date - Create] : \"2023/05/31\"[Date - Create]) "
 
 query += "AND ("
+
 
 query += "(\"Palliative Care\"[Mesh]) OR "
 query += "(\"Palliative Medicine\"[Mesh]) OR "
@@ -14,24 +16,37 @@ query += "(\"Hospice and Palliative Care Nursing\"[Mesh]) OR "
 query += "(\"Terminal Care\"[Mesh]) OR "
 query += "(\"Death\"[Mesh]) OR "
 query += "(\"Hospice Care\"[Mesh]) OR "
-#query += "(\"Right to Die\"[Mesh]) OR "
+query += "(\"Right to Die\"[Mesh]) OR "
 query += "(\"Catastrophic Illness\"[Mesh]) OR "
-#query += "(\"Respite Care\"[Mesh]) OR "
-#query += "(\"Assisted Living Facilities\"[Mesh]) OR "
+query += "(\"Respite Care\"[Mesh]) OR "
+query += "(\"Assisted Living Facilities\"[Mesh]) OR "
 query += "(\"Hospices\"[Mesh]) OR "
 query += "(\"Quality of Life\"[Mesh]) OR "
 query += "(\"Sickness Impact Profile\"[Mesh]) OR "
 query += "(\"Resuscitation Orders\"[Mesh]) OR "
 query += "(\"Withholding Treatment\"[Mesh]) OR "
 query += "(\"Advance Directive Adherence\"[Mesh]) OR "
-#query += "(\"Euthanasia, Passive\"[Mesh]) OR "
 query += "(\"Medical Futility\"[Mesh]) OR "
 query += "(\"Palliative Care/statistics and numerical data\"[Mesh]) OR "
-query += "(\"Ethics Consultation\"[Mesh])"
+query += "(\"Ethics Consultation\"[Mesh]) OR "
+query += "(\"Bereavement\"[Mesh]) OR "
+query += "(\"Grief\"[Mesh]) OR "
+query += "(\"Decision Making\"[Mesh]) OR "
+query += "(\"Advance Care Planning\"[Mesh]) OR "
+query += "(\"Advance Directives\"[Mesh]) OR "
+query += "(\"Communication\"[Mesh]) OR "
+query += "(\"Hospice and Palliative Care Nursing\"[Mesh]) OR "
+query += "(\"Attitude to Death\"[Mesh]) OR "
+query += "(\"Empathy\"[Mesh]) OR "
+query += "(\"Family Nursing\"[Mesh]) OR "
+query += "(\"Social support\"[Mesh]) OR "
+query += "(\"Health Personnel\"[Mesh]) OR "
+query += "(\"Home Care Services\"[Mesh]) OR "
+query += "(\"Needs Assessment\"[Mesh])"
 
 query += ") AND "
 
-query += "(\"Clinical Study\" [Publication Type])"
+query += "(\"Clinical Study\" [Publication Type]) NOT (\"Clinical Trial Protocol\"[Publication Type])"
 
 print(query)
 
