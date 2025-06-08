@@ -45,11 +45,13 @@ def get_mesh(pubmed_id: str) -> str:
 
 pubmed = PubMed(tool="paliativni.cz", email="pavel.dusek@lf1.cuni.cz")
 
-filename = "results_2024_A"
+#filename = "results_2024_A"
+filename = "results_2025"
 # query  = "(\"2021/01/01\"[Date - Create] : \"2022/06/30\"[Date - Create]) "
 # query  = "(\"2022/07/01\"[Date - Create] : \"2023/05/31\"[Date - Create]) "
 #query = '("2023/06/01"[Date - Create] : "2023/11/30"[Date - Create]) '
-query = '("2023/12/01"[Date - Create] : "2024/06/30"[Date - Create]) '
+#query = '("2023/12/01"[Date - Create] : "2024/06/30"[Date - Create]) '
+query = '("2024/07/01"[Date - Create] : "2025/06/01"[Date - Create]) '
 
 query += "AND ("
 
